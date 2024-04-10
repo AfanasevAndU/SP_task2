@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <Text className="defaulttext">Vite + React</Text>
+      <Text>Vite + React</Text>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
