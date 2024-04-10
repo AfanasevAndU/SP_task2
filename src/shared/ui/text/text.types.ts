@@ -10,4 +10,8 @@ export interface TextProps {
    * Задает id в DOM дереве для компонента.
    */
   id?: string;
+  /**
+   * Задает цвет текста
+   */
+  color?: string;
 }
