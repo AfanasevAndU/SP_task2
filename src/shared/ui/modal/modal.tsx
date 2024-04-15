@@ -3,6 +3,7 @@ import { ModalProps } from "./modal.types";
 import { Container } from "../container";
 import { StyledInput } from "./modal.styles";
 import { Button } from "../button";
+import { Text } from "../text";
 
 export const Modal: FC<ModalProps> = ({ state, onCreate }) => {
   const [title, setTitle] = useState("");
@@ -46,6 +47,9 @@ export const Modal: FC<ModalProps> = ({ state, onCreate }) => {
   }
   return (
     <Container flexDirection="column">
+      <Text color="white">
+        Перед добавлением навыка необходимо отобразить все навыки
+      </Text>
       <StyledInput
         type="text"
         placeholder="Картинка"

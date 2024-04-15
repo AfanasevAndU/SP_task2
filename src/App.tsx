@@ -17,13 +17,10 @@ export function App() {
       <Card size="L">
         <Image src={avatar} alt="Аватар"></Image>
         <Text color="black">Афанасьев Андрей Владиславович</Text>
+        <Text color="black">React - разработчик</Text>
       </Card>
       <Text color="white">Компетенции:</Text>
       <Container flexDirection="row">
-        <Button onClick={() => {}} type="submit">
-          {`навыки > 50%`}
-        </Button>
-
         <Button
           onClick={() => {
             setShowSkills(!showSkills);
@@ -32,9 +29,6 @@ export function App() {
           type="submit"
         >
           {showSkills ? "Скрыть компетенции" : "Показать компетенции"}
-        </Button>
-        <Button onClick={() => {}} type="submit">
-          {`навыки < 50%`}
         </Button>
       </Container>
 

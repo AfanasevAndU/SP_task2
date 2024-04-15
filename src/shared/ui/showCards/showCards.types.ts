@@ -6,7 +6,13 @@ export interface ShowCardsProps {
    * Состояние компонента.
    */
   show: boolean;
+  /**
+   * Массив изученных навыков
+   */
   knowSkills: SkillCard[];
+  /**
+   * Массив неизученных навыков
+   */
   needKnowSkills: SkillCard[];
 }
 

@@ -18,15 +18,7 @@ export const ShowCards: FC<ShowCardsProps> = ({
   const [toKnowSkills, setToKnowSkills] =
     useState<Array<SkillCard>>(needKnowSkills);
 
-  const [modal, setModal] = useState(false);
-
-  if (show === false) {
-    return (
-      <Container flexDirection="row">
-        <Text>Компетенций нет</Text>
-      </Container>
-    );
-  }
+  const [originalSkills, setOriginalSkills] = useState(toKnowSkills);
 
   const onDeleteClickKnowSkills = (id: number) => {
     setAlreadyKnowSkills(knownSkills.filter((skill) => skill.id != id));
@@ -34,6 +26,7 @@ export const ShowCards: FC<ShowCardsProps> = ({
 
   const onDeleteClickToKnowSkills = (id: number) => {
     setToKnowSkills(toKnowSkills.filter((skill) => skill.id != id));
+    setOriginalSkills(originalSkills.filter((skill) => skill.id != id));
   };
 
   const onClickPushSkills = (newSkill: SkillCard) => {
@@ -43,8 +36,35 @@ export const ShowCards: FC<ShowCardsProps> = ({
     } else {
       const newSkills = [...toKnowSkills, newSkill];
       setToKnowSkills(newSkills);
+      setOriginalSkills(newSkills);
     }
   };
+
+  const onClickShowGoodKnownSkills = (knowledge = 50) => {
+    setToKnowSkills(
+      originalSkills.filter((skill) => skill.knowledge >= knowledge)
+    );
+  };
+
+  const onClickShowBadKnownSkills = (knowledge = 50) => {
+    setToKnowSkills(
+      originalSkills.filter((skill) => skill.knowledge < knowledge)
+    );
+  };
+
+  const onClickShowSkills = () => {
+    setToKnowSkills(originalSkills);
+  };
+
+  const [showModal, setShowModal] = useState(false);
+
+  if (show === false) {
+    return (
+      <Container flexDirection="row">
+        <Text>Компетенций нет</Text>
+      </Container>
+    );
+  }
 
   return (
     <>
@@ -67,15 +87,40 @@ export const ShowCards: FC<ShowCardsProps> = ({
       <Container flexDirection="row">
         <Button
           onClick={() => {
-            setModal(!modal);
+            onClickShowGoodKnownSkills();
+          }}
+          type="submit"
+        >
+          {`навыки > 50%`}
+        </Button>
+        <Button
+          onClick={() => {
+            onClickShowSkills();
+          }}
+          type="submit"
+        >
+          {`Все навыки`}
+        </Button>
+        <Button
+          onClick={() => {
+            setShowModal(!showModal);
           }}
           type="submit"
         >
           Добавить навык
         </Button>
+        <Button
+          onClick={() => {
+            onClickShowBadKnownSkills();
+          }}
+          type="submit"
+        >
+          {`навыки < 50%`}
+        </Button>
       </Container>
-      <Modal state={modal} onCreate={onClickPushSkills}></Modal>
+      <Modal state={showModal} onCreate={onClickPushSkills}></Modal>
       <Text color="white"> Компетенции к изучению:</Text>
+
       <Container flexDirection="row">
         {toKnowSkills.map((skill) => (
           <Card key={skill.id} size="M">
