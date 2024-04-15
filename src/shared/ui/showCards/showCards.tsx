@@ -36,9 +36,14 @@ export const ShowCards: FC<ShowCardsProps> = ({
     setToKnowSkills(toKnowSkills.filter((skill) => skill.id != id));
   };
 
-  const onClickPushKnowSkills = (newSkill: SkillCard) => {
-    const newSkills = [...knownSkills, newSkill];
-    setAlreadyKnowSkills(newSkills);
+  const onClickPushSkills = (newSkill: SkillCard) => {
+    if (newSkill.knowledge === 100) {
+      const newSkills = [...knownSkills, newSkill];
+      setAlreadyKnowSkills(newSkills);
+    } else {
+      const newSkills = [...toKnowSkills, newSkill];
+      setToKnowSkills(newSkills);
+    }
   };
 
   return (
@@ -48,6 +53,7 @@ export const ShowCards: FC<ShowCardsProps> = ({
           <Card key={skill.id} size="M">
             <Image src={skill.src} alt={skill.alt}></Image>
             <Text color={skill.color}>{skill.title}</Text>
+            <Text color={skill.color}>{skill.description}</Text>
             <Text color={skill.color}>{`Уровень: ${skill.knowledge}%`}</Text>
             <Button
               type="reset"
@@ -68,14 +74,14 @@ export const ShowCards: FC<ShowCardsProps> = ({
           Добавить навык
         </Button>
       </Container>
-      <Modal state={modal} onCreate={onClickPushKnowSkills}></Modal>
+      <Modal state={modal} onCreate={onClickPushSkills}></Modal>
       <Text color="white"> Компетенции к изучению:</Text>
-
       <Container flexDirection="row">
         {toKnowSkills.map((skill) => (
           <Card key={skill.id} size="M">
             <Image src={skill.src} alt={skill.alt}></Image>
             <Text color={skill.color}>{skill.title}</Text>
+            <Text color={skill.color}>{skill.description}</Text>
             <Text color={skill.color}>{`Уровень: ${skill.knowledge}%`}</Text>
             <Button
               type="reset"

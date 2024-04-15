@@ -14,6 +14,7 @@ export type SkillCard = {
   src: string;
   alt?: string;
   color?: string;
+  description: string;
   title: string;
   knowledge: number;
   id: number;

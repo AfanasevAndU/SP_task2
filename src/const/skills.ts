@@ -19,6 +19,7 @@ export const defaultKnownSkills = [
     color: "black",
     title: "git",
     knowledge: 100,
+    description: "",
     id: 0,
   },
   {
@@ -27,6 +28,7 @@ export const defaultKnownSkills = [
     color: "black",
     title: "js",
     knowledge: 100,
+    description: "",
     id: 1,
   },
   {
@@ -35,6 +37,7 @@ export const defaultKnownSkills = [
     color: "black",
     title: "css",
     knowledge: 100,
+    description: "",
     id: 2,
   },
   {
@@ -42,6 +45,7 @@ export const defaultKnownSkills = [
     alt: "react native",
     color: "black",
     title: "react native",
+    description: "",
     knowledge: 100,
     id: 3,
   },
@@ -54,6 +58,7 @@ export const defaultToKnowSkills = [
     color: "black",
     title: "nodejs",
     knowledge: 65,
+    description: "",
     id: 0,
   },
   {
@@ -62,6 +67,7 @@ export const defaultToKnowSkills = [
     color: "black",
     title: "python",
     knowledge: 34,
+    description: "",
     id: 1,
   },
   {
@@ -70,6 +76,7 @@ export const defaultToKnowSkills = [
     color: "black",
     title: "docker",
     knowledge: 12,
+    description: "",
     id: 2,
   },
   {
@@ -78,6 +85,7 @@ export const defaultToKnowSkills = [
     color: "black",
     title: "postgresql",
     knowledge: 10,
+    description: "",
     id: 3,
   },
   {
@@ -86,6 +94,7 @@ export const defaultToKnowSkills = [
     color: "black",
     title: "mobx",
     knowledge: 45,
+    description: "",
     id: 4,
   },
   {
@@ -94,6 +103,7 @@ export const defaultToKnowSkills = [
     color: "black",
     title: "django",
     knowledge: 50,
+    description: "",
     id: 5,
   },
   {
@@ -102,6 +112,7 @@ export const defaultToKnowSkills = [
     color: "black",
     title: "cicd",
     knowledge: 90,
+    description: "",
     id: 6,
   },
   {
@@ -110,6 +121,7 @@ export const defaultToKnowSkills = [
     color: "black",
     title: "linux",
     knowledge: 82,
+    description: "",
     id: 7,
   },
   {
@@ -118,6 +130,7 @@ export const defaultToKnowSkills = [
     color: "black",
     title: "typescript",
     knowledge: 75,
+    description: "",
     id: 8,
   },
 ];

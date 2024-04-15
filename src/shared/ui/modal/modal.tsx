@@ -7,6 +7,7 @@ import { Button } from "../button";
 export const Modal: FC<ModalProps> = ({ state, onCreate }) => {
   const [title, setTitle] = useState("");
   const [src, setSrc] = useState("");
+  const [description, setDescription] = useState("");
   const [knowledge, setKnowledge] = useState<number>();
   const [id, setId] = useState<number>();
 
@@ -16,6 +17,10 @@ export const Modal: FC<ModalProps> = ({ state, onCreate }) => {
 
   const onSrcChange = (e: BaseSyntheticEvent) => {
     setSrc(e.target.value);
+  };
+
+  const onDescriptionChange = (e: BaseSyntheticEvent) => {
+    setDescription(e.target.value);
   };
 
   const onKnowledgeChange = (e: BaseSyntheticEvent) => {
@@ -57,6 +62,13 @@ export const Modal: FC<ModalProps> = ({ state, onCreate }) => {
       />
       <StyledInput
         type="text"
+        placeholder="Описание"
+        required={true}
+        value={description}
+        onChange={onDescriptionChange}
+      />
+      <StyledInput
+        type="text"
         placeholder="id"
         required={true}
         value={id}
@@ -72,15 +84,23 @@ export const Modal: FC<ModalProps> = ({ state, onCreate }) => {
       <Button
         type="submit"
         onClick={() => {
-          if (!src || !title || typeof knowledge === "undefined" || !id) {
+          if (
+            !src ||
+            !title ||
+            typeof knowledge === "undefined" ||
+            !id ||
+            !description
+          ) {
             alert("Заполните все поля");
             return;
           }
 
           onCreate({
             src: src,
+            alt: title,
             title: title,
             knowledge: knowledge,
+            description: description,
             id: id,
             color: "black",
           });
