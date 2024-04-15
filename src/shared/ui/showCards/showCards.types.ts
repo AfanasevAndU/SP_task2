@@ -12,8 +12,8 @@ export interface ShowCardsProps {
 
 export type SkillCard = {
   src: string;
-  alt: string;
-  color: string;
+  alt?: string;
+  color?: string;
   title: string;
   knowledge: number;
   id: number;

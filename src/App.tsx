@@ -6,13 +6,11 @@ import { Button } from "./shared/ui/button";
 import avatar from "./assets/avatar.jpg";
 import { ShowCards } from "./shared/ui/showCards";
 import { useState } from "react";
-import { Modal } from "./shared/ui/modal";
 import { defaultKnownSkills, defaultToKnowSkills } from "./const/skills";
 
 export function App() {
   const [showSkills, setShowSkills] = useState(true);
   const [buttonText, setButtonText] = useState(true);
-  const [modal, setModal] = useState(false);
 
   return (
     <>
@@ -25,9 +23,6 @@ export function App() {
         <Button onClick={() => {}} type="submit">
           {`навыки > 50%`}
         </Button>
-        <Button onClick={() => {}} type="submit">
-          {`навыки < 50%`}
-        </Button>
 
         <Button
           onClick={() => {
@@ -38,16 +33,11 @@ export function App() {
         >
           {showSkills ? "Скрыть компетенции" : "Показать компетенции"}
         </Button>
-        <Button
-          onClick={() => {
-            setModal(!modal);
-          }}
-          type="submit"
-        >
-          Добавить навык
+        <Button onClick={() => {}} type="submit">
+          {`навыки < 50%`}
         </Button>
       </Container>
-      <Modal state={modal} onClick={() => {}}></Modal>
+
       <ShowCards
         show={showSkills}
         knowSkills={defaultKnownSkills}

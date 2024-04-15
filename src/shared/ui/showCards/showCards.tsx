@@ -4,7 +4,7 @@ import { Container } from "../container";
 import { Text } from "../text";
 import { Image } from "../image";
 import { Card } from "../card";
-
+import { Modal } from "../modal";
 import { Button } from "../button";
 
 export const ShowCards: FC<ShowCardsProps> = ({
@@ -12,11 +12,13 @@ export const ShowCards: FC<ShowCardsProps> = ({
   knowSkills,
   needKnowSkills,
 }) => {
-  const [knownSkills, setAlreadyKnowArray] =
+  const [knownSkills, setAlreadyKnowSkills] =
     useState<Array<SkillCard>>(knowSkills);
 
-  const [toKnowSkills, setToKnowArray] =
+  const [toKnowSkills, setToKnowSkills] =
     useState<Array<SkillCard>>(needKnowSkills);
+
+  const [modal, setModal] = useState(false);
 
   if (show === false) {
     return (
@@ -26,12 +28,17 @@ export const ShowCards: FC<ShowCardsProps> = ({
     );
   }
 
-  const onDeleteClickKnowArray = (id: number) => {
-    setAlreadyKnowArray(knownSkills.filter((skill) => skill.id != id));
+  const onDeleteClickKnowSkills = (id: number) => {
+    setAlreadyKnowSkills(knownSkills.filter((skill) => skill.id != id));
   };
 
-  const onDeleteClickToKnowArray = (id: number) => {
-    setToKnowArray(toKnowSkills.filter((skill) => skill.id != id));
+  const onDeleteClickToKnowSkills = (id: number) => {
+    setToKnowSkills(toKnowSkills.filter((skill) => skill.id != id));
+  };
+
+  const onClickPushKnowSkills = (newSkill: SkillCard) => {
+    const newSkills = [...knownSkills, newSkill];
+    setAlreadyKnowSkills(newSkills);
   };
 
   return (
@@ -44,14 +51,26 @@ export const ShowCards: FC<ShowCardsProps> = ({
             <Text color={skill.color}>{`Уровень: ${skill.knowledge}%`}</Text>
             <Button
               type="reset"
-              onClick={() => onDeleteClickKnowArray(skill.id)}
+              onClick={() => onDeleteClickKnowSkills(skill.id)}
             >
               X
             </Button>
           </Card>
         ))}
       </Container>
+      <Container flexDirection="row">
+        <Button
+          onClick={() => {
+            setModal(!modal);
+          }}
+          type="submit"
+        >
+          Добавить навык
+        </Button>
+      </Container>
+      <Modal state={modal} onCreate={onClickPushKnowSkills}></Modal>
       <Text color="white"> Компетенции к изучению:</Text>
+
       <Container flexDirection="row">
         {toKnowSkills.map((skill) => (
           <Card key={skill.id} size="M">
@@ -60,7 +79,7 @@ export const ShowCards: FC<ShowCardsProps> = ({
             <Text color={skill.color}>{`Уровень: ${skill.knowledge}%`}</Text>
             <Button
               type="reset"
-              onClick={() => onDeleteClickToKnowArray(skill.id)}
+              onClick={() => onDeleteClickToKnowSkills(skill.id)}
             >
               X
             </Button>

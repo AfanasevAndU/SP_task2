@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react";
+import { SkillCard } from "../showCards";
 
 /**
  * Интерфейс компонента Modal.
@@ -11,5 +11,5 @@ export interface ModalProps {
   /**
    * Обработка события нажатия на кнопку
    */
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onCreate: (value: SkillCard) => void;
 }
