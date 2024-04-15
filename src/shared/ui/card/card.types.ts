@@ -13,11 +13,6 @@ export interface CardProps {
    */
   id?: string;
   /**
-   * Стиль карточки в зависимости от типа.
-   * @default 'primary'
-   */
-  type?: "primary" | "secondary";
-  /**
    * Размер карточки.
    * @default 'M'
    */
